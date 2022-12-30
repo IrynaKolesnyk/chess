@@ -1,0 +1,26 @@
+.cell {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .black {
+        width: 64px;
+        height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(136, 195, 214);
+    }
+
+    .white {
+        width: 64px;
+        height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #eed4ac;
+    }
+}
+

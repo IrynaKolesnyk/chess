@@ -1,0 +1,14 @@
+.board {
+    width: calc(64px * 8);
+    height: calc(64px * 8);
+    display: flex;
+    flex-wrap: wrap;
+
+    &:black {
+        background-color: deepskyblue;
+    }
+    
+    &:white {
+         background-color: #eed4ac;
+    }
+}
