@@ -1,58 +1,45 @@
 import { useEffect, useState } from "react";
 import { Chess } from "chess.js";
+import { cellsArr } from "../../utils/commonFunctions";
 import Cell from "../cell/Cell";
 import "./Board.scss";
 
 const chess = new Chess();
 
 const Board = () => {
-  const [cells, setCell] = useState([]);
+  const [cells, setCells] = useState([]);
+  const [moveFrom, setMoveFrom] = useState("");
 
   useEffect(() => {
-    const cellsArr = chess.board().map((row, i) => {
-      return row.map((piece, j) => {
-        if ((i + j) % 2 !== 0) {
-          return { piece, color: "black" }; // black cells
-        } else {
-          return { piece, color: "white" }; // white cells
-        }
-      });
-    });
-    setCell(cellsArr);
+    const initialBoard = chess.board();
+    setCells(cellsArr(initialBoard));
   }, []);
+
+  const onMove = (from, to) => {
+    chess.move({ from: from, to: to }); // example({ from: "a2", to: "a4" });
+    const newBoard = cellsArr(chess.board());
+    setCells(newBoard);
+    setMoveFrom("");
+  };
+
+  const onClickCell = (cellName) => {
+    if (moveFrom === "") {
+      setMoveFrom(cellName);
+      return;
+    }
+
+    onMove(moveFrom, cellName);
+  };
 
   return (
     <div className="board">
-      {cells.map((row) => {
-        return row.map((cell, index) => {
-          return <Cell key={index} cell={cell} />;
-        });
-      })}
+        {cells.map((row) => {
+            return row.map((cell, index) => {
+            return <Cell key={index} cell={cell} onClickCell={onClickCell} />;
+            });
+        })}
     </div>
   );
 };
 
 export default Board;
-
-//   const cells = [];
-
-//   for (let y = 0; y < 8; y++) {
-//     const row = [];
-//     for (let x = 0; x < 8; x++) {
-//       if ((y + x) % 2 !== 0) {
-//         row.push({ x, y, color: "black" }); // black cells
-//       } else {
-//         row.push({ x, y, color: "white" }); // white cells
-//       }
-//     }
-//     cells.push(row);
-//   }
-
-//   console.log("cells", cells);
-//   const newCells = [];
-
-//   cells.forEach((arr) => {
-//     arr.forEach((cellObj) => newCells.push(cellObj));
-//   });
-
-//   console.log("newCells", newCells);
