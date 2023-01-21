@@ -22,7 +22,11 @@ const Board = () => {
     setMoveFrom("");
   };
 
-  const onClickCell = (cellName) => {
+  const onClickCell = (cell) => {
+    const {cellName, piece } = cell;
+    
+    if (!moveFrom && piece?.color !== chess.turn()) return; //if piece is not selected and cell does not have piece return
+    
     if (moveFrom === "") {
       setMoveFrom(cellName);
       return;
