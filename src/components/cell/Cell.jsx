@@ -1,24 +1,16 @@
 import Figure from "../figures/Figure";
 import "./Cell.scss";
-import { Chess } from "chess.js";
 
-const chess = new Chess();
+const Cell = ({ cell, onClickCell, active }) => {
 
-const Cell = ({ cell, onClickCell }) => {
-    let available = true;
-
-    if (cell?.piece?.color !== chess.turn()) {
-        available = false;
-    }
-
-    const onClick = () =>{
+    const onClick = (e) => {
         onClickCell(cell);
-    }
+    };
 
     return (
-        <div className={['cell', !available ? "disabled" : ''].join(' ')} onClick={onClick}>
+        <div className='cell' onClick={onClick}>
             <div className={cell.color}>
-                {cell.piece && <Figure piece={cell.piece} />}
+                {cell.piece && <Figure piece={cell.piece} active={active}/>}
             </div>
         </div>
     );

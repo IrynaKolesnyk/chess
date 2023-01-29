@@ -1,4 +1,5 @@
 .cell {
+    position: relative;
     width: 64px;
     height: 64px;
     display: flex;
@@ -13,6 +14,10 @@
         justify-content: center;
         align-items: center;
         background-color: rgb(136, 195, 214);
+
+        &.active {
+            border-bottom: 2px solid tomato;
+        }
     }
 
     .white {
@@ -22,6 +27,10 @@
         justify-content: center;
         align-items: center;
         background-color: #eed4ac;
+
+        &.active {
+            border-bottom: 2px solid tomato;
+        }
     }
 }
 

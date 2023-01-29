@@ -1,4 +1,8 @@
 .figure {
+    &.active {
+        border-bottom: 2px solid tomato;
+    }
+
     img{
         width: 48px;
         height: 48px;

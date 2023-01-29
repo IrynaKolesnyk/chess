@@ -7,7 +7,7 @@ import Rook from "./Rook";
 
 import "./Figure.scss";
 
-const Figure = ({ piece }) => {
+const Figure = ({ piece, active }) => {
   const figure = () => {
     switch (piece.type) {
       case "p":
@@ -27,7 +27,7 @@ const Figure = ({ piece }) => {
     }
   };
 
-  return <div className="figure">{figure()}</div>;
+  return <div className={['figure', active ? "active" : ''].join(' ')}>{figure()}</div>;
 };
 
 export default Figure;
